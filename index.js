@@ -4,6 +4,9 @@ const app = express();
 const port = 8000;
 
 
+//use express router for the routers folder we created(middleware)
+app.use('/',require('./routes/index'));
+
 
 
 app.listen(port,(err)=>{
