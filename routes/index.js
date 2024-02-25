@@ -11,5 +11,9 @@ router.use('/users' , require('./users'));
 
 router.use('/testing',require('./testing'))
 
+router.use('/',function(req,res){
+    return res.send('<h1>Error 404 Not Found!</h1>');
+})
+
 
 module.exports = router;

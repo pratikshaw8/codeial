@@ -3,5 +3,5 @@ module.exports.profile = function(req,res){
 }
 
 module.exports.create = function(req,res){
-    return res.send('<h1>Creating a  profil</h1>');
+    return res.send('<h1>Creating a  profile</h1>');
 }
