@@ -6,7 +6,6 @@ const userController = require('../controllers/users_controller');
 
 
 router.get('/',homeController.home);
-router.get('/sleep',homeController.sleep);
 router.use('/users' , require('./users'));
 
 router.use('/testing',require('./testing'))
