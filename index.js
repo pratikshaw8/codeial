@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
-
+const cookieParser = require('cookie-parser');
 const port = 8000;
 
+app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
 app.use(express.static('./assets'));
 
 app.use(expressLayouts);
