@@ -11,7 +11,24 @@ module.exports.signIn = function(req,res){
 }
 
 module.exports.profile = (req,res)=> {
-    return res.render('profile',{title:"Profile Page"})
+    if(req.cookies.user_id)
+    {
+        User.findById(req.cookies.user_id)
+        .then(user=>{
+            if(user)
+                return res.render('profile',{title:"Profile Page",user : user});
+            else
+                return res.redirect('/users/sign-in');
+        })
+        .catch(err=>{
+            console.log("Error in finding user",err);
+        })
+        
+    }
+    else{
+        return res.redirect('/users/sign-in');
+    }
+
 }
 
 
@@ -53,6 +70,7 @@ module.exports.createSession = function(req,res){
 
             //handle session creation
             res.cookie('user_id', user.id);
+            req.session = req.body;
             return res.redirect('/users/profile');
         }
         else
@@ -64,3 +82,8 @@ module.exports.createSession = function(req,res){
     })
 }
 
+
+module.exports.signOut = function(req, res){
+    res.clearCookie('user_id');
+    return res.redirect('/users/sign-in');
+}
